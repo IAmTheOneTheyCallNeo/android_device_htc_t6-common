@@ -379,6 +379,21 @@ service qcamerasvr /system/bin/mm-qcamera-daemon
     user camera
     group camera system inet graphics
 
+service qcom-post-boot /system/bin/sh /system/etc/init.qcom.post_boot.sh
+    user root
+    disabled
+    oneshot
+
+service qcom-wifi-sh /system/bin/sh /system/etc/init.qcom.wifi.sh
+    class main
+    user root
+    oneshot
+
+service qcom-wifi-sh /system/bin/sh /system/etc/init.qcom.coex.sh
+    class main
+    user root
+    oneshot
+
 service qmuxd /system/bin/qmuxd
     class core
     user radio
@@ -451,6 +466,10 @@ service dhcpcd_bt-pan /system/bin/dhcpcd -BKLG
     disabled
     oneshot
 
+service dhcpcd_bnep4 /system/bin/dhcpcd -BKLG
+    disabled
+    oneshot
+
 service iprenew_bt-pan /system/bin/dhcpcd -n
     disabled
     oneshot
@@ -466,6 +485,11 @@ service hciattach /system/bin/sh /system/etc/init.qcom.bt.sh
     user bluetooth
     group qcom_oncrpc bluetooth net_bt_admin system
     disabled
+    oneshot
+
+service qcom-sh /system/bin/sh /init.qcom.sh
+    class main
+    user root
     oneshot
 
 # Property triggers begin here
